@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RickAndMorty</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="Hello">Hello!</string>
+    <string name="episode">Episode:</string>
+    <string name="locstion">Location:</string>
+    <string name="origin">Origin:</string>
+    <string name="gender">Gender:</string>
+    <string name="specy">Species:</string>
+    <string name="status">Status:</string>
+    <string name="created">Created At:</string>
+
+</resources>
