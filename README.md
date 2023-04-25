@@ -6,5 +6,5 @@ Simple android application showing different characters in rick and morty(cartoo
 ## API documentation
 🔗 https://rickandmortyapi.com/documentation
 
-##Contribute💙
+## Contribute💙
 Feel free to do modifications any improvements are welcomed
