@@ -84,12 +84,5 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
             holder.bind(current,position==selectedPosition)
         }
     }
-    fun selectFirstItem(){
-        if(itemCount > 0){
-            selectedPosition = 0
-            notifyDataSetChanged()
-            onItemClicked(getItem(selectedPosition))
-        }
-    }
 
 }
