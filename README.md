@@ -12,11 +12,12 @@ Feel free to do modifications any improvements are welcomed
 ![alt text](https://images.unsplash.com/photo-1682409308343-0f87a815a965?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80)
 
 ## Screenshots
+Here are some attached screenshots
 ### Splash Screen
-![Splash Screen](https://images.unsplash.com/photo-1682416095704-55b2d9d42a26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60)
+![Splash Screen](https://images.unsplash.com/photo-1682416095704-55b2d9d42a26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=268&q=80)
 
 ### MainActivity 
 ![MainActivity Screen](https://images.unsplash.com/photo-1682415699966-ee754efb8583?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=268&q=80)
 
 ### Character Details Screen
-![MainActivity Screen](https://images.unsplash.com/photo-1682415769669-e9d4e2c0a6be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=268&q=80)
+![Character Details Screen](https://images.unsplash.com/photo-1682415769669-e9d4e2c0a6be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=268&q=80)
