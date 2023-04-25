@@ -23,6 +23,7 @@ class RickMortyViewModel:ViewModel() {
     val locationList:LiveData<List<LocationList>> get() = _locationList
     var locationListData= mutableListOf<LocationList>()
     var nextLocation:String?=null
+    var resultss= emptyList<LocationResponse>().toMutableList()
     fun loadLocations(){
         viewModelScope.launch(Dispatchers.IO) {
             val callApi=ApplicationApi.retrofitService.getLocations()
@@ -32,6 +33,7 @@ class RickMortyViewModel:ViewModel() {
                     response: Response<LocationResponse>
                 ) {
                     if (response.code()==200){
+                        resultss.add(response.body()!!)
                         nextLocation=response.body()!!.info.next
                         locationListData += response.body()!!.results.toMutableList()
                         _locationList.value=locationListData

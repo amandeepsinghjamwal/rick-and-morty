@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
         binding.locationRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         locationListAdapter.selectFirstItem()
-
     }
 
     private fun sendDetails(

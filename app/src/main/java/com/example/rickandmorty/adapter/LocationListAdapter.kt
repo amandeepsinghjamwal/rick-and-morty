@@ -22,14 +22,19 @@ import com.example.rickandmorty.viewmodel.RickMortyViewModel
 class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Context,var activity: Activity, private val onItemClicked:(LocationList)->Unit):
     ListAdapter<LocationList, LocationListAdapter.ItemViewHolder>(DiffCallBack) {
     private var selectedPosition = -1
-    var stop=false
+    var firstTime:Boolean=true
+    var firstItem:Boolean=true
+
     inner class ItemViewHolder(var binding:HorizontalItemsBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(data: LocationList, isSelected: Boolean) {
 
             binding.apply {
                 button.text = data.name
                 button.isSelected = isSelected
-
+                if(firstTime){
+                    (activity as MainActivity).loadCharacters(viewModel.resultss[0].results[0].residents)
+                    firstTime=false
+                }
                 if (isSelected) {
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
                     button.isEnabled=false
@@ -72,7 +77,12 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
         holder.itemView.setOnClickListener {
             onItemClicked(current)
         }
-        holder.bind(current,position==selectedPosition)
+        if(firstTime){
+            holder.bind(current,true)
+        }
+        else{
+            holder.bind(current,position==selectedPosition)
+        }
     }
     fun selectFirstItem(){
         if(itemCount > 0){
