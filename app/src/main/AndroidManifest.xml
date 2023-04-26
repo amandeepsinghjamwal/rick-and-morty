@@ -17,6 +17,7 @@
             android:name=".CharacterDetailsActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
