@@ -3,7 +3,10 @@ package com.example.rickandmorty
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
+import android.view.animation.ScaleAnimation
 import android.widget.TextView
 import com.example.rickandmorty.databinding.ActivitySplashScreenBinding
 import kotlinx.coroutines.CoroutineScope
@@ -17,9 +20,19 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val animationZoomOut= AnimationUtils.loadAnimation(this,R.anim.fadeout_animation)
-        binding.imageView.startAnimation(animationZoomOut)
-        binding.imageView3.startAnimation(animationZoomOut)
+        val animationSet= AnimationSet(false)
+        val animationZoomIn= ScaleAnimation(.5f,1f,.5f,1f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+        val animationZoomOut= ScaleAnimation(1.2f,1f,1.2f,1f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+        animationZoomOut.startOffset = 500
+        animationZoomIn.duration=1000
+        animationZoomOut.duration=1000
+        animationZoomOut.fillAfter=true
+        animationSet.addAnimation(animationZoomIn)
+        animationSet.addAnimation(animationZoomOut)
+//        val animationZoomOut= AnimationUtils.loadAnimation(this,R.anim.fadeout_animation)
+        binding.imageView.startAnimation(animationSet)
+        binding.imageView3.startAnimation(animationSet)
+        binding.textView.startAnimation(animationSet)
         val intent=Intent(this,MainActivity::class.java).apply {
             flags=Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }

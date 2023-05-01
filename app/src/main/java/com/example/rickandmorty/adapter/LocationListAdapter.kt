@@ -23,7 +23,6 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
     ListAdapter<LocationList, LocationListAdapter.ItemViewHolder>(DiffCallBack) {
     private var selectedPosition = -1
     var firstTime:Boolean=true
-    var firstItem:Boolean=true
 
     inner class ItemViewHolder(var binding:HorizontalItemsBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(data: LocationList, isSelected: Boolean) {
@@ -43,7 +42,9 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
                     button.isEnabled=true
                 }
                 button.setOnClickListener {
+                    (activity as MainActivity).showShimmer(1)
                     if(data.residents.isEmpty()){
+                        (activity as MainActivity).showShimmer(0)
                         Toast.makeText(context,"No Residents here",Toast.LENGTH_SHORT).show()
                     }
 

@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#CCC4C4</color>
+    <color name="shimmer_color">#BFBDBD</color>
 
 </resources>

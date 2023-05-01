@@ -3,6 +3,7 @@ package com.example.rickandmorty
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         binding.locationRecyclerView.adapter = locationListAdapter
 
         viewModel.locationList.observe(this) { location ->
+            binding.shimmerHorizontal.visibility=View.GONE
             locationListAdapter.submitList(location)
         }
 
@@ -110,6 +112,8 @@ class MainActivity : AppCompatActivity() {
                     ) {
                         Log.e("heree",response.code().toString())
                         if(response.code()==200){
+                            binding.shimmer.visibility=View.GONE
+                            binding.recyclerView.visibility=View.VISIBLE
                             responseCharacter += response.body()!!
                             characterListAdapter.notifyDataSetChanged()
                         }
@@ -120,6 +124,15 @@ class MainActivity : AppCompatActivity() {
                 })
             }
             Log.e("faild","failed")
+        }
+    }
+
+    fun showShimmer(i:Int) {
+        if(i==0){
+            binding.shimmer.visibility= View.GONE
+        }
+        else{
+            binding.shimmer.visibility= View.VISIBLE
         }
     }
 }
