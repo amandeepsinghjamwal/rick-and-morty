@@ -2,9 +2,7 @@ package com.example.rickandmorty.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -13,9 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.MainActivity
 import com.example.rickandmorty.R
-import com.example.rickandmorty.api.models.characterdetailsresponse.CharactersResponse
 import com.example.rickandmorty.api.models.locationresponse.LocationList
-import com.example.rickandmorty.databinding.ActivityMainBinding
 import com.example.rickandmorty.databinding.HorizontalItemsBinding
 import com.example.rickandmorty.viewmodel.RickMortyViewModel
 
@@ -23,7 +19,6 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
     ListAdapter<LocationList, LocationListAdapter.ItemViewHolder>(DiffCallBack) {
     private var selectedPosition = -1
     var firstTime:Boolean=true
-    var firstTimeButton:Boolean=true
     inner class ItemViewHolder(var binding:HorizontalItemsBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(data: LocationList, isSelected: Boolean) {
 
@@ -31,11 +26,6 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
 
                 button.text = data.name
                 button.isSelected = isSelected
-                if(firstTime){
-                    (activity as MainActivity).loadCharacters(viewModel.resultss[0].results[0].residents)
-                    firstTime=false
-                }
-
 
                 if (isSelected) {
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
@@ -44,13 +34,14 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
                 else {
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.grey))
                     button.isEnabled=true
-                    if(data.id==1 && firstTimeButton){
+                    if(data.id==1 && firstTime){
+                        (activity as MainActivity).loadCharacters(viewModel.resultss[0].results[0].residents)
                         button.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
                         button.isEnabled=false
                     }
                 }
                 button.setOnClickListener {
-                    firstTimeButton=false
+                    firstTime=false
                     (activity as MainActivity).showShimmer(1)
                     if(data.residents.isEmpty()){
                         (activity as MainActivity).showShimmer(0)
