@@ -23,25 +23,34 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
     ListAdapter<LocationList, LocationListAdapter.ItemViewHolder>(DiffCallBack) {
     private var selectedPosition = -1
     var firstTime:Boolean=true
-
+    var firstTimeButton:Boolean=true
     inner class ItemViewHolder(var binding:HorizontalItemsBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(data: LocationList, isSelected: Boolean) {
 
             binding.apply {
+
                 button.text = data.name
                 button.isSelected = isSelected
                 if(firstTime){
                     (activity as MainActivity).loadCharacters(viewModel.resultss[0].results[0].residents)
                     firstTime=false
                 }
+
+
                 if (isSelected) {
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
                     button.isEnabled=false
-                } else {
+                }
+                else {
                     button.setBackgroundColor(ContextCompat.getColor(context, R.color.grey))
                     button.isEnabled=true
+                    if(data.id==1 && firstTimeButton){
+                        button.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                        button.isEnabled=false
+                    }
                 }
                 button.setOnClickListener {
+                    firstTimeButton=false
                     (activity as MainActivity).showShimmer(1)
                     if(data.residents.isEmpty()){
                         (activity as MainActivity).showShimmer(0)
@@ -78,12 +87,7 @@ class LocationListAdapter(var viewModel: RickMortyViewModel, var context: Contex
         holder.itemView.setOnClickListener {
             onItemClicked(current)
         }
-        if(firstTime){
-            holder.bind(current,true)
-        }
-        else{
             holder.bind(current,position==selectedPosition)
-        }
     }
 
 }

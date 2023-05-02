@@ -25,13 +25,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: RickMortyViewModel
     private lateinit var characterListAdapter: CharacterListAdapter
-
+    private var isClicked=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[RickMortyViewModel::class.java]
-
         characterListAdapter = CharacterListAdapter(viewModel) { character ->
             val episodeOf = mutableListOf<String>()
             character.episode.forEach { episode ->
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         binding.locationRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                if (!recyclerView.canScrollHorizontally(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     viewModel.loadNextPage()
                     Log.e("reached","triggered")
                     locationListAdapter.notifyDataSetChanged()
@@ -104,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         characterListAdapter.submitList(responseCharacter)
         CoroutineScope(Dispatchers.IO).launch {
             for(resident in residents){
+
                 val callApi= ApplicationApi.retrofitService.getCharacters(resident)
                 callApi.enqueue(object : Callback<CharactersResponse> {
                     override fun onResponse(
@@ -135,4 +135,5 @@ class MainActivity : AppCompatActivity() {
             binding.shimmer.visibility= View.VISIBLE
         }
     }
+
 }
